@@ -27,3 +27,14 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
+
+/*
+  Framer whileInView + IntersectionObserver can fail on mobile WebKit; sections stay
+  at opacity:0. This forces final state (see data-fade-in on FadeIn).
+*/
+@media (max-width: 1024px), (hover: none) and (pointer: coarse) {
+  [data-fade-in] {
+    opacity: 1 !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+}
