@@ -1,42 +1,45 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-
-const defaultVariants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const tags = {
-  div: motion.div,
-  section: motion.section,
-  article: motion.article,
-};
+import { useEffect, useRef, useState } from "react";
 
 export function FadeIn({ children, className = "", delay = 0, as = "div" }) {
-  const reduce = useReducedMotion();
-  const Component = tags[as] ?? motion.div;
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
 
-  if (reduce) {
-    const Static = as === "section" ? "section" : as === "article" ? "article" : "div";
-    return <Static className={className}>{children}</Static>;
-  }
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      queueMicrotask(() => setVisible(true));
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
+      { root: null, rootMargin: "0px 0px 12% 0px", threshold: 0.02 }
+    );
+
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const Tag = as === "section" ? "section" : as === "article" ? "article" : "div";
 
   return (
-    <Component
+    <Tag
+      ref={ref}
       data-fade-in
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{
-        once: true,
-        amount: 0.05,
-        margin: "0px 0px 40% 0px",
-      }}
-      transition={{ duration: 0.58, delay, ease: [0.22, 1, 0.36, 1] }}
-      variants={defaultVariants}
+      className={`reveal-scroll ${visible ? "reveal-scroll--visible" : ""} ${className}`.trim()}
+      style={
+        visible && delay
+          ? { transitionDelay: `${delay}s` }
+          : undefined
+      }
     >
       {children}
-    </Component>
+    </Tag>
   );
 }

@@ -28,9 +28,77 @@ body {
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
+/* Scroll reveal — pure CSS + tiny IO in FadeIn (no Framer). */
+.reveal-scroll {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.58s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.58s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-scroll.reveal-scroll--visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Hero — CSS keyframes only (LCP-friendly, no motion library). */
+.hero-eyebrow {
+  opacity: 0;
+  animation: heroFadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.hero-word {
+  opacity: 0;
+  animation: heroWordIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.hero-sub {
+  opacity: 0;
+  animation: heroFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
+}
+.hero-cta {
+  opacity: 0;
+  animation: heroFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+}
+@keyframes heroWordIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 28px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-eyebrow,
+  .hero-word,
+  .hero-sub,
+  .hero-cta {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /*
-  Framer whileInView + IntersectionObserver can fail on mobile WebKit; sections stay
-  at opacity:0. This forces final state (see data-fade-in on FadeIn).
+  IntersectionObserver edge cases on mobile WebKit — force visible read.
 */
 @media (max-width: 1024px), (hover: none) and (pointer: coarse) {
   [data-fade-in] {
