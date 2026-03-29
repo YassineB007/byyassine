@@ -1,13 +1,29 @@
-import { AuthorityStats } from "@/components/portfolio/authority-stats";
+import dynamic from "next/dynamic";
 import { CursorSpotlight } from "@/components/portfolio/cursor-spotlight";
-import { FlexBento } from "@/components/portfolio/flex-bento";
 import { Hero } from "@/components/portfolio/hero";
-import { Projects } from "@/components/portfolio/projects";
-import { SiteFooter } from "@/components/portfolio/site-footer";
 import { SiteNav } from "@/components/portfolio/site-nav";
-import { Solutions } from "@/components/portfolio/solutions";
-import { Testimonial } from "@/components/portfolio/testimonial";
-import { TrustBar } from "@/components/portfolio/trust-bar";
+
+const TrustBar = dynamic(() =>
+  import("@/components/portfolio/trust-bar").then((m) => m.TrustBar)
+);
+const AuthorityStats = dynamic(() =>
+  import("@/components/portfolio/authority-stats").then((m) => m.AuthorityStats)
+);
+const Testimonial = dynamic(() =>
+  import("@/components/portfolio/testimonial").then((m) => m.Testimonial)
+);
+const FlexBento = dynamic(() =>
+  import("@/components/portfolio/flex-bento").then((m) => m.FlexBento)
+);
+const Solutions = dynamic(() =>
+  import("@/components/portfolio/solutions").then((m) => m.Solutions)
+);
+const Projects = dynamic(() =>
+  import("@/components/portfolio/projects").then((m) => m.Projects)
+);
+const SiteFooter = dynamic(() =>
+  import("@/components/portfolio/site-footer").then((m) => m.SiteFooter)
+);
 
 export default function Home() {
   return (

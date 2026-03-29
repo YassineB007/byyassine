@@ -58,7 +58,7 @@ export function Projects() {
             Live sites.
           </h2>
           <p className="mt-4 max-w-2xl font-sans text-zinc-400">
-            Scroll inside each preview, or open the full site in a new tab.
+            Open any project in a new tab — full experience, zero lag on this page.
           </p>
         </FadeIn>
 
@@ -73,7 +73,6 @@ export function Projects() {
                   fallbackSrc={item.image}
                   fallbackAlt={item.imageAlt}
                   label={item.title}
-                  embedIframe={item.embedIframe !== false}
                 />
                 <div className="flex flex-1 flex-col border-t border-white/[0.06] p-6">
                   <p className="font-mono text-[10px] font-medium uppercase tracking-[0.15em] text-zinc-500 sm:text-xs">

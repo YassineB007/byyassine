@@ -1,21 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
- * Subtle radial spotlight following the pointer — pointer-events none so it never blocks UI.
+ * Subtle radial spotlight following the pointer — pointer-events none.
+ * rAF-throttled to reduce main-thread work (Lighthouse / INP).
  */
 export function CursorSpotlight() {
   const [pos, setPos] = useState({ x: 50, y: 35 });
+  const raf = useRef(0);
+  const pending = useRef({ x: 50, y: 35 });
 
   useEffect(() => {
     const onMove = (e) => {
-      const x = (e.clientX / window.innerWidth) * 100;
-      const y = (e.clientY / window.innerHeight) * 100;
-      setPos({ x, y });
+      pending.current = {
+        x: (e.clientX / window.innerWidth) * 100,
+        y: (e.clientY / window.innerHeight) * 100,
+      };
+      if (raf.current) return;
+      raf.current = requestAnimationFrame(() => {
+        raf.current = 0;
+        setPos(pending.current);
+      });
     };
     window.addEventListener("mousemove", onMove, { passive: true });
-    return () => window.removeEventListener("mousemove", onMove);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      if (raf.current) cancelAnimationFrame(raf.current);
+    };
   }, []);
 
   return (
@@ -24,7 +36,7 @@ export function CursorSpotlight() {
       aria-hidden
     >
       <div
-        className="absolute inset-0 transition-[background] duration-300 ease-out"
+        className="absolute inset-0 transition-[background] duration-300 ease-out will-change-[background]"
         style={{
           background: `
             radial-gradient(ellipse 90% 70% at ${pos.x}% ${pos.y}%, rgba(250, 250, 250, 0.055) 0%, transparent 52%),
