@@ -27,7 +27,11 @@ export function FadeIn({ children, className = "", delay = 0, as = "div" }) {
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-60px 0px -80px 0px" }}
+      viewport={{
+        once: true,
+        amount: 0.08,
+        margin: "120px 0px 160px 0px",
+      }}
       transition={{ duration: 0.58, delay, ease: [0.22, 1, 0.36, 1] }}
       variants={defaultVariants}
     >

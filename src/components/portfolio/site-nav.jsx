@@ -13,6 +13,12 @@ export function SiteNav() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  useEffect(() => {
     if (!open) return;
     const onKey = (e) => e.key === "Escape" && setOpen(false);
     document.body.style.overflow = "hidden";

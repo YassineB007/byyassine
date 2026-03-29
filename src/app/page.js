@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <CursorSpotlight />
       <SiteNav />
-      <div className="relative z-10">
+      <div className="relative z-20">
         <main className="pt-[5.5rem] sm:pt-[6rem]">
           <Hero />
           <TrustBar />
