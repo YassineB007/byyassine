@@ -147,7 +147,7 @@ function LiveStatus({ compact = false }) {
         <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
       </span>
       <span className="min-w-0 truncate">
-        {compact ? "Apr sprint · 2 slots" : "Available for April Sprint (2 Slots Left)"}
+        {compact ? "Available · April" : "Available for April"}
       </span>
     </div>
   );
