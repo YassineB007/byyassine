@@ -58,7 +58,7 @@ export function Projects() {
             Live sites.
           </h2>
           <p className="mt-4 max-w-2xl font-sans text-zinc-400">
-            Open any project in a new tab — full experience, zero lag on this page.
+            Load an embedded preview on demand, or open the full site in a new tab.
           </p>
         </FadeIn>
 
