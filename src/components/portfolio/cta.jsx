@@ -7,17 +7,17 @@ const secondaryBase =
 const primaryBase =
   "inline-flex h-12 min-w-[11rem] items-center justify-center rounded-2xl bg-zinc-50 px-7 font-sans text-sm font-semibold tracking-tight text-[#0b0b0b] shadow-[inset_0_1px_0_rgba(255,255,255,0.65)] ring-1 ring-white/10 transition duration-300 hover:bg-white hover:shadow-[0_0_40px_-12px_rgba(250,250,250,0.22)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-300";
 
-export function CtaPrimary({ href, children, className = "" }) {
+export function CtaPrimary({ href, children, className = "", ...props }) {
   return (
-    <Link href={href} className={`${primaryBase} ${className}`}>
+    <Link href={href} className={`${primaryBase} ${className}`} {...props}>
       {children}
     </Link>
   );
 }
 
-export function CtaSecondary({ href, children, className = "" }) {
+export function CtaSecondary({ href, children, className = "", ...props }) {
   return (
-    <Link href={href} className={`${secondaryBase} ${className}`}>
+    <Link href={href} className={`${secondaryBase} ${className}`} {...props}>
       {children}
     </Link>
   );

@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { CtaPrimary, CtaSecondary } from "./cta";
+import { HeroCtas } from "./hero-ctas";
 
 const HEADLINE = "High-Performance Digital Infrastructure.";
 
@@ -42,10 +42,7 @@ export function Hero() {
           Building the Next.js ecosystems that Commerce & Coaching brands use to
           scale. I turn 2-second lag into instant conversions.
         </p>
-        <div className="hero-cta mt-14 flex w-full max-w-md flex-col items-stretch justify-center gap-3 sm:mx-auto sm:max-w-none sm:flex-row sm:items-center">
-          <CtaPrimary href="#contact">Get a Technical Audit</CtaPrimary>
-          <CtaSecondary href="#the-flex">View Infrastructure</CtaSecondary>
-        </div>
+        <HeroCtas />
       </div>
     </section>
   );

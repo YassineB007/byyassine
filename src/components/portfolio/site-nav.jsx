@@ -1,13 +1,34 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CtaPrimary } from "./cta";
 
 const NAV_LINKS = [
-  { href: "#projects", label: "Work" },
-  { href: "#solutions", label: "Solutions" },
+  { href: "#projects", id: "projects", label: "Work" },
+  { href: "#solutions", id: "solutions", label: "Solutions" },
 ];
+
+/** Smooth scroll + URL hash update so repeated clicks always move (same-hash bug). */
+function scrollToSection(id, closeMenu) {
+  closeMenu?.();
+  requestAnimationFrame(() => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    const path = window.location.pathname + window.location.search;
+    window.history.replaceState(null, "", `${path}#${id}`);
+  });
+}
+
+function scrollToTop(closeMenu) {
+  closeMenu?.();
+  requestAnimationFrame(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    const path = window.location.pathname + window.location.search;
+    window.history.replaceState(null, "", path);
+  });
+}
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
@@ -36,23 +57,31 @@ export function SiteNav() {
           className="mx-auto flex max-w-4xl items-center gap-2 rounded-full border border-zinc-800/50 bg-zinc-950/65 py-2.5 pl-3 pr-2 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.65),inset_0_1px_0_0_rgba(255,255,255,0.06)] backdrop-blur-xl sm:gap-3 sm:pl-4 sm:pr-3"
           aria-label="Primary"
         >
-          <Link
+          <a
             href="#"
             className="shrink-0 font-sans text-sm font-semibold tracking-tight text-zinc-100"
-            onClick={() => setOpen(false)}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToTop(undefined);
+              setOpen(false);
+            }}
           >
             by yassine
-          </Link>
+          </a>
 
           <div className="hidden min-w-0 flex-1 justify-center gap-1 md:flex">
             {NAV_LINKS.map((item) => (
-              <Link
+              <a
                 key={item.href}
                 href={item.href}
                 className="rounded-full px-3 py-2 font-mono text-xs font-medium uppercase tracking-[0.12em] text-zinc-400 transition hover:bg-white/[0.05] hover:text-zinc-100"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(item.id, undefined);
+                }}
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
           </div>
 
@@ -63,7 +92,14 @@ export function SiteNav() {
             <div className="md:hidden">
               <LiveStatus compact />
             </div>
-            <CtaPrimary href="#contact" className="!h-10 !min-w-0 px-3 !text-[11px] sm:px-5 sm:!text-xs">
+            <CtaPrimary
+              href="#contact"
+              className="!h-10 !min-w-0 px-3 !text-[11px] sm:px-5 sm:!text-xs"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("contact", undefined);
+              }}
+            >
               Book Audit
             </CtaPrimary>
             <button
@@ -111,22 +147,28 @@ export function SiteNav() {
           </div>
           <div className="flex flex-1 flex-col gap-2 overflow-y-auto px-4 py-8">
             {NAV_LINKS.map((item) => (
-              <Link
+              <a
                 key={item.href}
                 href={item.href}
                 className="rounded-2xl border border-white/[0.06] bg-white/[0.03] px-5 py-5 font-mono text-sm font-medium uppercase tracking-[0.15em] text-zinc-200 active:bg-white/[0.06]"
-                onClick={() => setOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(item.id, () => setOpen(false));
+                }}
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
-            <Link
+            <a
               href="#contact"
               className="mt-2 rounded-2xl bg-zinc-50 px-5 py-5 text-center font-sans text-base font-semibold text-[#0b0b0b]"
-              onClick={() => setOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("contact", () => setOpen(false));
+              }}
             >
               Book Audit
-            </Link>
+            </a>
             <div className="mt-8 border-t border-white/[0.06] pt-8">
               <LiveStatus />
             </div>
