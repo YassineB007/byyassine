@@ -13,25 +13,25 @@ const PLACEHOLDERS = [
 export function TrustBar() {
   return (
     <section
-      className="border-y border-white/[0.04] bg-black/20 px-4 py-10 sm:py-12"
+      className="border-y border-indigo-500/15 bg-gradient-to-b from-slate-950/50 via-indigo-950/10 to-slate-950/50 px-4 py-14 sm:py-16"
       aria-label="Trusted by teams in"
     >
       <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <p className="text-center font-mono text-[10px] font-medium uppercase tracking-[0.25em] text-zinc-500 sm:text-[11px]">
-            E-com brands · Coaching platforms · Select partners
+          <p className="section-eyebrow text-center text-slate-500">
+            E-commerce · Coaching · Select partners
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-5">
             {PLACEHOLDERS.map((item) => (
               <div
                 key={item.label + item.sub}
-                className="flex h-11 min-w-[5.5rem] items-center justify-center rounded-lg border border-zinc-800/40 bg-zinc-900/30 px-4 grayscale transition hover:grayscale-0"
+                className="surface-card flex h-[3.25rem] min-w-[6rem] items-center justify-center px-5 transition duration-300 hover:border-indigo-400/25 hover:bg-indigo-950/20 sm:h-12 sm:min-w-[6.75rem]"
               >
                 <div className="text-center">
-                  <span className="block font-sans text-xs font-semibold tracking-tight text-zinc-400">
+                  <span className="block font-sans text-xs font-semibold tracking-tight text-slate-200">
                     {item.label}
                   </span>
-                  <span className="mt-0.5 block font-mono text-[9px] uppercase tracking-widest text-zinc-600">
+                  <span className="mt-0.5 block font-mono text-[9px] uppercase tracking-[0.18em] text-slate-500">
                     {item.sub}
                   </span>
                 </div>

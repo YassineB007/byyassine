@@ -1,8 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0b0b0b;
-  --foreground: #fafafa;
+  /* Cool graphite base + silver / indigo frost */
+  --background: #07090f;
+  --foreground: #f4f4f5;
+  --silver-bright: #f8fafc;
+  --silver-mid: #cbd5e1;
+  --silver-dim: #64748b;
+  --frost: rgba(199, 210, 254, 0.14);
+  --frost-strong: rgba(165, 180, 252, 0.22);
+  --ice: rgba(56, 189, 248, 0.08);
+  --surface: rgba(255, 255, 255, 0.05);
+  --border: rgba(148, 163, 184, 0.18);
+  --border-strong: rgba(203, 213, 225, 0.28);
+  --muted: #94a3b8;
+  --section-y: clamp(4.5rem, 10vw, 8rem);
+}
+
+::selection {
+  background: rgba(165, 180, 252, 0.28);
+  color: inherit;
 }
 
 @theme inline {
@@ -23,9 +40,98 @@ html {
 }
 
 body {
-  background: var(--background);
+  min-height: 100%;
   color: var(--foreground);
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  /* Layered cool depth — not flat black */
+  background-color: #05060a;
+  background-image:
+    radial-gradient(ellipse 120% 80% at 50% -30%, rgba(99, 102, 241, 0.14), transparent 55%),
+    radial-gradient(ellipse 90% 60% at 100% 0%, rgba(56, 189, 248, 0.07), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 0% 40%, rgba(148, 163, 184, 0.06), transparent 55%),
+    radial-gradient(ellipse 80% 60% at 50% 120%, rgba(30, 41, 59, 0.45), transparent 55%),
+    linear-gradient(180deg, #070910 0%, #0a0c14 40%, #080a12 100%);
+  background-attachment: fixed;
+}
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
+/* Unified section intros — use with content inside max-w-2xl */
+.section-eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+@media (min-width: 640px) {
+  .section-eyebrow {
+    font-size: 0.75rem;
+  }
+}
+.section-title {
+  margin-top: 0.75rem;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: #f1f5f9;
+  text-shadow: 0 0 48px rgba(199, 210, 254, 0.06);
+}
+.section-lede {
+  margin-top: 1rem;
+  max-width: 42rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #94a3b8;
+}
+@media (min-width: 640px) {
+  .section-lede {
+    font-size: 1.0625rem;
+  }
+}
+
+/* Card shell — frosted silver + cool edge light */
+.surface-card {
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.09) 0%,
+    rgba(199, 210, 254, 0.04) 42%,
+    rgba(15, 23, 42, 0.35) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 0 rgba(99, 102, 241, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 20px 50px -30px rgba(99, 102, 241, 0.12);
+  backdrop-filter: blur(14px);
+}
+
+/* Lift on hover — desktop / fine pointer only */
+@media (hover: hover) and (pointer: fine) {
+  .lift-card {
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.35s ease,
+      box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .lift-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(165, 180, 252, 0.35);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.14),
+      0 24px 48px -28px rgba(0, 0, 0, 0.5),
+      0 0 72px -20px rgba(165, 180, 252, 0.18);
+  }
 }
 
 /* Scroll reveal — pure CSS + tiny IO in FadeIn (no Framer). */
@@ -94,6 +200,137 @@ body {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+}
+
+/* Wordmark — iridescent silver (slate + indigo hints) */
+.brand-mark-name {
+  background: linear-gradient(
+    125deg,
+    #ffffff 0%,
+    #e2e8f0 18%,
+    #a5b4fc 38%,
+    #94a3b8 52%,
+    #cbd5e1 72%,
+    #f1f5f9 100%
+  );
+  background-size: 160% 160%;
+  background-position: 25% 45%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition:
+    filter 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.brand-mark--hero .brand-mark-name {
+  filter: drop-shadow(0 0 28px rgba(165, 180, 252, 0.2)) drop-shadow(0 1px 0 rgba(15, 23, 42, 0.5));
+}
+.group:hover .brand-mark-name {
+  filter: brightness(1.12) saturate(1.15);
+  letter-spacing: -0.025em;
+}
+.group:hover .brand-mark--hero .brand-mark-name {
+  filter: brightness(1.12) saturate(1.15) drop-shadow(0 0 32px rgba(165, 180, 252, 0.28))
+    drop-shadow(0 1px 0 rgba(15, 23, 42, 0.5));
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-mark-name {
+    transition: none;
+  }
+  .brand-mark--hero .brand-mark-name,
+  .group:hover .brand-mark-name,
+  .group:hover .brand-mark--hero .brand-mark-name {
+    filter: none;
+    letter-spacing: inherit;
+  }
+}
+
+/* “by” label — frosted silver pill */
+.brand-mark-by {
+  border: 1px solid rgba(165, 180, 252, 0.22);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(199, 210, 254, 0.06) 50%,
+    rgba(15, 23, 42, 0.25) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 20px -8px rgba(99, 102, 241, 0.15);
+  color: #cbd5e1 !important;
+}
+.group:hover .brand-mark-by {
+  border-color: rgba(199, 210, 254, 0.35);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(199, 210, 254, 0.1) 55%,
+    rgba(30, 41, 59, 0.35) 100%
+  );
+  color: #e2e8f0 !important;
+}
+
+/* Hero headline — chrome silver */
+.hero-headline-chrome {
+  background: linear-gradient(
+    118deg,
+    #ffffff 0%,
+    #f1f5f9 22%,
+    #cbd5e1 45%,
+    #e2e8f0 70%,
+    #f8fafc 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 60px rgba(165, 180, 252, 0.12));
+}
+.hero-sub-chrome {
+  color: #94a3b8;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-headline-chrome {
+    filter: none;
+  }
+}
+
+/* Slow aurora blobs — hero only, respect reduced motion */
+@keyframes hero-aurora-a {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.52;
+    transform: translate(4%, -3%) scale(1.06);
+  }
+}
+@keyframes hero-aurora-b {
+  0%,
+  100% {
+    opacity: 0.28;
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.42;
+    transform: translate(-3%, 4%) scale(1.05);
+  }
+}
+.hero-aurora-a {
+  animation: hero-aurora-a 24s ease-in-out infinite;
+}
+.hero-aurora-b {
+  animation: hero-aurora-b 32s ease-in-out infinite;
+  animation-delay: -8s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-aurora-a,
+  .hero-aurora-b {
+    animation: none;
+    opacity: 0.38;
+    transform: none;
   }
 }
 

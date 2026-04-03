@@ -1,42 +1,68 @@
 "use client";
 
+import { BrandMark } from "./brand-mark";
 import { FadeIn } from "./fade-in";
 import { CtaSecondaryExternal } from "./cta";
+
+const FOOTER_LINKS = [
+  { href: "#projects", label: "Work" },
+  { href: "#the-flex", label: "Speed" },
+  { href: "#solutions", label: "Solutions" },
+  { href: "#contact", label: "Contact" },
+];
 
 export function SiteFooter() {
   return (
     <footer
       id="contact"
-      className="scroll-mt-28 border-t border-white/[0.06] px-4 py-16"
+      className="scroll-mt-28 border-t border-indigo-500/15 bg-gradient-to-b from-transparent via-indigo-950/5 to-slate-950/30 px-4 py-20 sm:py-24"
     >
       <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <div className="flex flex-col gap-10 md:flex-row md:items-center md:justify-between md:gap-12">
-            <div className="min-w-0 max-w-lg">
-              <p className="font-sans text-lg font-semibold tracking-tight text-zinc-50">
-                by yassine
+          <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between md:gap-16">
+            <div className="min-w-0 max-w-xl">
+              <BrandMark variant="footer" />
+              <p className="mt-5 max-w-md font-sans text-[0.9375rem] leading-relaxed text-zinc-500">
+                Technical audits and production-grade Next.js infrastructure for brands
+                that refuse slow pages and leaky funnels.
               </p>
-              <p className="mt-3 font-sans text-sm leading-relaxed text-zinc-500">
-                Technical audits and infrastructure for brands that refuse slow pages.
-              </p>
+              <nav
+                className="mt-8 flex flex-wrap gap-x-8 gap-y-3 font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-zinc-500"
+                aria-label="Footer"
+              >
+                {FOOTER_LINKS.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="transition hover:text-zinc-300"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </nav>
             </div>
-            <div className="flex w-full flex-col items-stretch gap-2 sm:w-auto sm:items-end">
+            <div className="flex w-full flex-col items-stretch gap-3 sm:w-auto sm:max-w-sm sm:items-end">
               <CtaSecondaryExternal
                 href="https://calendly.com/yassineb007/30min"
                 className="w-full shrink-0 sm:w-auto"
               >
                 Book a 10-min call
               </CtaSecondaryExternal>
-              <p className="text-center font-mono text-[10px] leading-relaxed text-zinc-600 sm:max-w-[15rem] sm:text-right">
-                Intro calls are 10 minutes. The calendar reserves 30 so there’s always buffer—we’re never rushed.
+              <p className="text-center font-mono text-[10px] leading-relaxed text-zinc-600 sm:max-w-[17rem] sm:text-right sm:text-[11px]">
+                Intro calls are 10 minutes. The calendar reserves 30 so there&apos;s always
+                buffer—we&apos;re never rushed.
               </p>
             </div>
           </div>
         </FadeIn>
       </div>
-      <div className="mx-auto mt-14 max-w-6xl border-t border-white/[0.04] pt-8">
+      <div className="mx-auto mt-16 max-w-6xl border-t border-white/[0.05] pt-10">
         <p className="text-center font-mono text-[11px] text-zinc-600">
-          © {new Date().getFullYear()} by yassine. All rights reserved.
+          © {new Date().getFullYear()}{" "}
+          <span className="brand-mark-name font-sans font-semibold tracking-tight">
+            by yassine
+          </span>
+          . All rights reserved.
         </p>
       </div>
     </footer>

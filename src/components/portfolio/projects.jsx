@@ -3,8 +3,24 @@
 import { FadeIn } from "./fade-in";
 import { SitePreview } from "./site-preview";
 
+function ArrowUpRight({ className = "" }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      aria-hidden
+    >
+      <path d="M5 11h6V5M5 5l7 7" />
+    </svg>
+  );
+}
+
 const projectCard =
-  "group flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-800/50 bg-white/[0.03] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-md transition duration-300 hover:border-zinc-700/70 hover:shadow-[0_0_48px_-16px_rgba(250,250,250,0.1)]";
+  "group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-500/25 bg-gradient-to-b from-white/[0.05] to-indigo-950/15 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] backdrop-blur-md transition duration-300 hover:border-indigo-400/30 hover:shadow-[0_0_56px_-24px_rgba(165,180,252,0.15)]";
 
 const WORK = [
   {
@@ -12,7 +28,7 @@ const WORK = [
     title: "ApexCoach",
     tag: "Fitness coaching",
     description:
-      "Premium coaching funnel — programs, results, process, and consult CTAs built to convert.",
+      "Premium coaching funnel—programs, results, process, and consult CTAs built to convert.",
     image: "/project-apexcoach.svg",
     imageAlt:
       "Poster for ApexCoach — shown while the live preview loads or if embedding is blocked",
@@ -22,7 +38,7 @@ const WORK = [
     title: "Elevated",
     tag: "Coaching institution",
     description:
-      "Institutional coaching brand — structured narrative and premium positioning.",
+      "Institutional coaching brand—structured narrative and premium positioning.",
     image: "/project-elevated.svg",
     imageAlt:
       "Poster for Elevated — shown while the live preview loads or if embedding is blocked",
@@ -32,10 +48,19 @@ const WORK = [
     title: "Valemonte",
     tag: "Luxury commerce",
     description:
-      "Italian luxury menswear — editorial layout, collections, and refined product UX.",
+      "Italian luxury menswear—editorial layout, collections, and refined product UX.",
     image: "/project-valemonte.svg",
     imageAlt:
       "Poster for Valemonte — shown while the live preview loads or if embedding is blocked",
+  },
+  {
+    href: "https://strata-six-ivory.vercel.app/",
+    title: "STRATA",
+    tag: "Streetwear commerce",
+    description:
+      "Contemporary streetwear—editorial hero, product grids, drops, and conversion-focused shop flows.",
+    image: "/project-strata.svg",
+    imageAlt: "Poster for STRATA — contemporary streetwear storefront preview",
   },
 ];
 
@@ -43,30 +68,26 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="scroll-mt-28 px-4 py-20 sm:py-28"
+      className="scroll-mt-28 px-4 py-24 sm:py-32"
       aria-labelledby="projects-heading"
     >
       <div className="mx-auto max-w-6xl">
         <FadeIn>
-          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-500 sm:text-xs">
-            Projects
-          </p>
-          <h2
-            id="projects-heading"
-            className="mt-3 font-sans text-3xl font-bold tracking-tight text-zinc-50 sm:text-4xl"
-          >
-            Live sites.
+          <p className="section-eyebrow">Projects</p>
+          <h2 id="projects-heading" className="section-title">
+            Live sites
           </h2>
-          <p className="mt-4 max-w-2xl font-sans text-zinc-400">
-            Load an embedded preview on demand, or open the full site in a new tab.
+          <p className="section-lede">
+            Posters load instantly; optional live embed on demand so the page stays fast
+            in lab tests. Open any build in a new tab when you want the full experience.
           </p>
         </FadeIn>
 
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-8 sm:grid-cols-2">
           {WORK.map((item, i) => (
             <FadeIn key={item.href} className="h-full" delay={0.05 + i * 0.05}>
               <article
-                className={`${projectCard} flex h-full flex-col outline-none focus-within:ring-2 focus-within:ring-zinc-500 focus-within:ring-offset-2 focus-within:ring-offset-[#0b0b0b]`}
+                className={`${projectCard} flex h-full flex-col outline-none focus-within:ring-2 focus-within:ring-zinc-400 focus-within:ring-offset-2 focus-within:ring-offset-[#070910]`}
               >
                 <SitePreview
                   url={item.href}
@@ -74,11 +95,11 @@ export function Projects() {
                   fallbackAlt={item.imageAlt}
                   label={item.title}
                 />
-                <div className="flex flex-1 flex-col border-t border-white/[0.06] p-6">
-                  <p className="font-mono text-[10px] font-medium uppercase tracking-[0.15em] text-zinc-500 sm:text-xs">
+                <div className="flex flex-1 flex-col border-t border-white/[0.07] p-6 sm:p-7">
+                  <p className="font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-zinc-500 sm:text-[11px]">
                     {item.tag}
                   </p>
-                  <h3 className="mt-2 font-sans text-lg font-semibold text-zinc-50">
+                  <h3 className="mt-2 font-sans text-lg font-semibold tracking-tight text-zinc-50 sm:text-xl">
                     {item.title}
                   </h3>
                   <p className="mt-2 flex-1 font-sans text-sm leading-relaxed text-zinc-500">
@@ -88,15 +109,10 @@ export function Projects() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex min-h-[44px] items-center font-sans text-sm font-medium text-zinc-300 transition hover:text-zinc-100"
+                    className="mt-5 inline-flex min-h-[44px] items-center gap-2 font-sans text-sm font-medium text-zinc-300 transition hover:text-white"
                   >
                     Open full site
-                    <span
-                      className="ml-1 inline-block transition-transform group-hover:translate-x-0.5"
-                      aria-hidden
-                    >
-                      ↗
-                    </span>
+                    <ArrowUpRight className="h-4 w-4 opacity-80 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                 </div>
               </article>

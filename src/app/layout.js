@@ -25,7 +25,7 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: "#0b0b0b",
+  themeColor: "#070910",
 };
 
 export default function RootLayout({ children }) {
@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col overflow-x-hidden bg-[#0b0b0b] font-sans text-zinc-50">
+      <body className="flex min-h-full flex-col overflow-x-hidden font-sans text-slate-100">
         {children}
       </body>
     </html>

@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { BrandMark } from "./brand-mark";
 import { CtaPrimary } from "./cta";
 
 const NAV_LINKS = [
   { href: "#projects", id: "projects", label: "Work" },
+  { href: "#the-flex", id: "the-flex", label: "Speed" },
   { href: "#solutions", id: "solutions", label: "Solutions" },
 ];
 
@@ -54,27 +56,28 @@ export function SiteNav() {
     <>
       <header className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4">
         <nav
-          className="mx-auto flex max-w-4xl items-center gap-2 rounded-full border border-zinc-800/50 bg-zinc-950/65 py-2.5 pl-3 pr-2 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.65),inset_0_1px_0_0_rgba(255,255,255,0.06)] backdrop-blur-xl sm:gap-3 sm:pl-4 sm:pr-3"
+          className="mx-auto flex max-w-6xl items-center gap-1 rounded-full border border-indigo-500/20 bg-slate-950/75 py-2.5 pl-3 pr-2 shadow-[0_12px_48px_-16px_rgba(0,0,0,0.65),inset_0_1px_0_0_rgba(255,255,255,0.09),0_0_40px_-20px_rgba(99,102,241,0.15)] backdrop-blur-xl sm:gap-2 sm:pl-4 sm:pr-3"
           aria-label="Primary"
         >
           <a
             href="#"
-            className="shrink-0 font-sans text-sm font-semibold tracking-tight text-zinc-100"
+            className="shrink-0 -ml-0.5 rounded-full px-1 py-0.5 text-slate-100 transition hover:bg-indigo-500/10"
             onClick={(e) => {
               e.preventDefault();
               scrollToTop(undefined);
               setOpen(false);
             }}
+            aria-label="by yassine — back to top"
           >
-            by yassine
+            <BrandMark variant="nav" />
           </a>
 
-          <div className="hidden min-w-0 flex-1 justify-center gap-1 md:flex">
+          <div className="hidden min-w-0 flex-1 justify-center gap-0.5 md:flex">
             {NAV_LINKS.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="rounded-full px-3 py-2 font-mono text-xs font-medium uppercase tracking-[0.12em] text-zinc-400 transition hover:bg-white/[0.05] hover:text-zinc-100"
+                className="rounded-full px-2.5 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-slate-400 transition hover:bg-indigo-500/10 hover:text-slate-100 sm:px-3 sm:text-xs"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(item.id, undefined);
@@ -127,13 +130,13 @@ export function SiteNav() {
       {open ? (
         <div
           id="mobile-menu"
-          className="fixed inset-0 z-[60] flex flex-col bg-[#0b0b0b]/98 backdrop-blur-xl md:hidden"
+          className="fixed inset-0 z-[60] flex flex-col bg-[#05060a]/98 backdrop-blur-xl md:hidden"
           role="dialog"
           aria-modal="true"
           aria-label="Navigation"
         >
           <div className="flex items-center justify-between border-b border-white/[0.06] px-4 py-4">
-            <span className="font-sans text-sm font-semibold text-zinc-100">by yassine</span>
+            <BrandMark variant="compact" />
             <button
               type="button"
               className="flex h-12 min-h-[48px] w-12 min-w-[48px] items-center justify-center rounded-full border border-zinc-800 text-zinc-200"
@@ -161,7 +164,7 @@ export function SiteNav() {
             ))}
             <a
               href="#contact"
-              className="mt-2 rounded-2xl bg-zinc-50 px-5 py-5 text-center font-sans text-base font-semibold text-[#0b0b0b]"
+              className="mt-2 rounded-2xl bg-gradient-to-b from-slate-50 to-slate-200 px-5 py-5 text-center font-sans text-base font-semibold text-[#070910]"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToSection("contact", () => setOpen(false));
