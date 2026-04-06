@@ -31,7 +31,7 @@ export default function Home() {
       <CursorSpotlight />
       <SiteNav />
       <div className="relative z-20">
-        <main className="pt-[5.5rem] sm:pt-[6rem]">
+        <main className="pt-[calc(5.5rem+env(safe-area-inset-top,0px))] sm:pt-[calc(6rem+env(safe-area-inset-top,0px))]">
           <Hero />
           <TrustBar />
           <AuthorityStats />

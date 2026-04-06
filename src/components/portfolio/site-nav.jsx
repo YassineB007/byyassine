@@ -54,14 +54,14 @@ export function SiteNav() {
 
   return (
     <>
-      <header className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4">
+      <header className="fixed left-0 right-0 top-0 z-50 px-2 pt-[max(0.75rem,env(safe-area-inset-top))] sm:px-4">
         <nav
-          className="mx-auto flex max-w-6xl items-center gap-1 rounded-full border border-indigo-500/20 bg-slate-950/75 py-2.5 pl-3 pr-2 shadow-[0_12px_48px_-16px_rgba(0,0,0,0.65),inset_0_1px_0_0_rgba(255,255,255,0.09),0_0_40px_-20px_rgba(99,102,241,0.15)] backdrop-blur-xl sm:gap-2 sm:pl-4 sm:pr-3"
+          className="mx-auto flex min-h-[3.25rem] min-w-0 max-w-6xl items-center gap-1 overflow-hidden rounded-full border border-indigo-500/20 bg-slate-950/80 py-2 pl-2 pr-1.5 shadow-[0_12px_48px_-16px_rgba(0,0,0,0.65),inset_0_1px_0_0_rgba(255,255,255,0.09),0_0_40px_-20px_rgba(99,102,241,0.15)] backdrop-blur-xl sm:gap-2 sm:pl-3 sm:pr-2.5"
           aria-label="Primary"
         >
           <a
             href="#"
-            className="shrink-0 -ml-0.5 rounded-full px-1 py-0.5 text-slate-100 transition hover:bg-indigo-500/10"
+            className="min-w-0 shrink overflow-hidden rounded-full px-0.5 py-0.5 text-slate-100 transition hover:bg-indigo-500/10 sm:px-1"
             onClick={(e) => {
               e.preventDefault();
               scrollToTop(undefined);
@@ -72,12 +72,13 @@ export function SiteNav() {
             <BrandMark variant="nav" />
           </a>
 
-          <div className="hidden min-w-0 flex-1 justify-center gap-0.5 md:flex">
+          {/* lg+ inline links — avoids cramming nav + status + CTA on tablet widths */}
+          <div className="hidden min-w-0 flex-1 justify-center gap-0 lg:flex xl:gap-1">
             {NAV_LINKS.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="rounded-full px-2.5 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-slate-400 transition hover:bg-indigo-500/10 hover:text-slate-100 sm:px-3 sm:text-xs"
+                className="shrink-0 rounded-full px-2 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.1em] text-slate-400 transition hover:bg-indigo-500/10 hover:text-slate-100 xl:px-2.5 xl:text-[11px] xl:tracking-[0.12em]"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(item.id, undefined);
@@ -88,26 +89,29 @@ export function SiteNav() {
             ))}
           </div>
 
-          <div className="ml-auto flex min-w-0 shrink-0 items-center gap-2 sm:gap-3">
-            <div className="hidden max-w-[10.5rem] sm:max-w-[14rem] md:block lg:max-w-none">
+          <div className="ml-auto flex min-w-0 shrink-0 items-center gap-1.5 sm:gap-2.5">
+            {/* Full status copy needs width — only at xl+ */}
+            <div className="hidden min-w-0 xl:block">
               <LiveStatus />
             </div>
-            <div className="md:hidden">
+            {/* Compact badge: mobile through large desktop */}
+            <div className="xl:hidden">
               <LiveStatus compact />
             </div>
             <CtaPrimary
               href="#contact"
-              className="!h-10 !min-w-0 px-3 !text-[11px] sm:px-5 sm:!text-xs"
+              className="!h-10 !min-w-0 shrink-0 px-2.5 !text-[10px] sm:px-4 sm:!text-xs lg:px-5"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToSection("contact", undefined);
               }}
             >
-              Book Audit
+              <span className="sm:hidden">Audit</span>
+              <span className="hidden sm:inline">Book Audit</span>
             </CtaPrimary>
             <button
               type="button"
-              className="flex h-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-zinc-800/60 bg-white/[0.04] text-zinc-200 backdrop-blur-sm transition hover:border-zinc-700 hover:bg-white/[0.07] md:hidden"
+              className="flex h-11 min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-full border border-zinc-800/60 bg-white/[0.04] text-zinc-200 backdrop-blur-sm transition hover:border-zinc-700 hover:bg-white/[0.07] lg:hidden"
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? "Close menu" : "Open menu"}
@@ -130,7 +134,7 @@ export function SiteNav() {
       {open ? (
         <div
           id="mobile-menu"
-          className="fixed inset-0 z-[60] flex flex-col bg-[#05060a]/98 backdrop-blur-xl md:hidden"
+          className="fixed inset-0 z-[60] flex flex-col bg-[#05060a]/98 pb-[env(safe-area-inset-bottom)] pt-[env(safe-area-inset-top)] backdrop-blur-xl lg:hidden"
           role="dialog"
           aria-modal="true"
           aria-label="Navigation"
@@ -148,7 +152,7 @@ export function SiteNav() {
               </svg>
             </button>
           </div>
-          <div className="flex flex-1 flex-col gap-2 overflow-y-auto px-4 py-8">
+          <div className="flex flex-1 flex-col gap-2 overflow-y-auto overscroll-contain px-4 py-8">
             {NAV_LINKS.map((item) => (
               <a
                 key={item.href}
@@ -185,7 +189,7 @@ export function SiteNav() {
 function LiveStatus({ compact = false }) {
   return (
     <div
-      className={`flex min-w-0 items-center gap-2 rounded-full border border-zinc-800/50 bg-black/30 px-2 py-1.5 font-mono text-zinc-400 sm:px-2.5 ${compact ? "text-[9px] leading-tight sm:text-[10px]" : "text-[10px] leading-snug sm:text-[11px]"}`}
+      className={`flex min-w-0 max-w-full items-center gap-2 rounded-full border border-zinc-800/50 bg-black/30 px-2 py-1.5 font-mono text-zinc-400 sm:px-2.5 ${compact ? "text-[9px] leading-tight sm:text-[10px]" : "text-[10px] leading-snug sm:text-[11px]"}`}
     >
       <span className="relative flex h-2 w-2 shrink-0">
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/60 opacity-75" />

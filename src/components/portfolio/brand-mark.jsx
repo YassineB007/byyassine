@@ -50,11 +50,11 @@ function BrandGlyph({ className = "" }) {
 
 const VARIANTS = {
   nav: {
-    wrap: "flex-row items-center gap-2.5",
-    glyph: "h-[19px] w-[19px] sm:h-[21px] sm:w-[21px]",
-    byWrap: "px-[0.35rem] py-[0.1rem] sm:px-1.5 sm:py-0.5",
-    by: "text-[8px] sm:text-[9px]",
-    name: "text-[13px] tracking-[-0.03em] sm:text-sm",
+    wrap: "flex-row items-center gap-1.5 min-[400px]:gap-2.5",
+    glyph: "h-[17px] w-[17px] min-[400px]:h-[19px] min-[400px]:w-[19px] sm:h-[21px] sm:w-[21px]",
+    byWrap: "px-1 py-px min-[400px]:px-[0.35rem] min-[400px]:py-[0.1rem] sm:px-1.5 sm:py-0.5",
+    by: "text-[7px] min-[400px]:text-[8px] sm:text-[9px]",
+    name: "text-[11px] tracking-[-0.03em] min-[400px]:text-[13px] sm:text-sm",
   },
   hero: {
     wrap: "flex-row items-center justify-center gap-3 sm:gap-4",
