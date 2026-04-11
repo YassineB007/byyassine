@@ -1,7 +1,3 @@
-"use client";
-
-import { FadeIn } from "./fade-in";
-
 const PLACEHOLDERS = [
   { label: "E-com", sub: "Brand" },
   { label: "Coaching", sub: "Platform" },
@@ -13,11 +9,12 @@ const PLACEHOLDERS = [
 export function TrustBar() {
   return (
     <section
-      className="border-y border-indigo-500/15 bg-gradient-to-b from-slate-950/50 via-indigo-950/10 to-slate-950/50 px-4 py-14 sm:py-16"
+      id="trust"
+      className="trust-shelf border-y border-indigo-400/20 bg-gradient-to-b from-slate-950/55 via-indigo-950/18 to-slate-950/55 px-4 py-14 sm:py-16"
       aria-label="Trusted by teams in"
     >
       <div className="mx-auto max-w-6xl">
-        <FadeIn>
+        <div className="reveal-scroll">
           <p className="section-eyebrow text-center text-slate-500">
             E-commerce · Coaching · Select partners
           </p>
@@ -38,7 +35,7 @@ export function TrustBar() {
               </div>
             ))}
           </div>
-        </FadeIn>
+        </div>
       </div>
     </section>
   );

@@ -1,15 +1,20 @@
 import Link from "next/link";
+import { ctaPrimaryClassName, ctaSecondaryClassName } from "./cta-classes";
 
-/** Matches site surfaces: rounded-2xl, subtle border, inset highlight */
-const secondaryBase =
-  "inline-flex h-12 min-w-[11rem] items-center justify-center gap-2 rounded-2xl border border-slate-400/25 bg-gradient-to-b from-white/[0.08] to-indigo-950/20 px-7 font-sans text-sm font-semibold tracking-tight text-slate-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_32px_-16px_rgba(99,102,241,0.12)] transition duration-300 hover:border-indigo-300/35 hover:from-white/[0.12] hover:to-indigo-950/30 hover:shadow-[0_0_52px_-12px_rgba(165,180,252,0.2)] active:scale-[0.99] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400/60";
+export { ctaPrimaryClassName, ctaSecondaryClassName } from "./cta-classes";
 
-const primaryBase =
-  "inline-flex h-12 min-w-[11rem] items-center justify-center rounded-2xl bg-gradient-to-b from-slate-50 to-slate-200/95 px-7 font-sans text-sm font-semibold tracking-tight text-[#070910] shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] ring-1 ring-indigo-200/25 transition duration-300 hover:from-white hover:to-slate-100 hover:shadow-[0_0_48px_-8px_rgba(165,180,252,0.35)] active:scale-[0.985] active:brightness-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-300";
+function hashHref(href) {
+  return typeof href === "string" && href.startsWith("#");
+}
 
 export function CtaPrimary({ href, children, className = "", ...props }) {
   return (
-    <Link href={href} className={`${primaryBase} ${className}`} {...props}>
+    <Link
+      href={href}
+      prefetch={hashHref(href) ? false : undefined}
+      className={`${ctaPrimaryClassName} ${className}`}
+      {...props}
+    >
       {children}
     </Link>
   );
@@ -17,7 +22,12 @@ export function CtaPrimary({ href, children, className = "", ...props }) {
 
 export function CtaSecondary({ href, children, className = "", ...props }) {
   return (
-    <Link href={href} className={`${secondaryBase} ${className}`} {...props}>
+    <Link
+      href={href}
+      prefetch={hashHref(href) ? false : undefined}
+      className={`${ctaSecondaryClassName} ${className}`}
+      {...props}
+    >
       {children}
     </Link>
   );
@@ -48,7 +58,7 @@ export function CtaSecondaryExternal({ href, children, className = "" }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`${secondaryBase} ${className}`}
+      className={`${ctaSecondaryClassName} ${className}`}
     >
       {children}
       <ExternalIcon />

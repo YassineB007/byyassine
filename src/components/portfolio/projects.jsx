@@ -1,6 +1,5 @@
 "use client";
 
-import { FadeIn } from "./fade-in";
 import { SitePreview } from "./site-preview";
 
 function ArrowUpRight({ className = "" }) {
@@ -20,7 +19,7 @@ function ArrowUpRight({ className = "" }) {
 }
 
 const projectCard =
-  "group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-500/25 bg-gradient-to-b from-white/[0.05] to-indigo-950/15 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] backdrop-blur-md transition duration-300 hover:border-indigo-400/30 hover:shadow-[0_0_56px_-24px_rgba(165,180,252,0.15)]";
+  "project-card-pop group lift-card flex h-full flex-col overflow-hidden rounded-2xl border border-slate-500/25 bg-gradient-to-b from-white/[0.06] to-indigo-950/20 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),0_0_0_1px_rgba(99,102,241,0.06)] backdrop-blur-md transition duration-300 hover:border-indigo-400/35 hover:shadow-[0_0_64px_-20px_rgba(165,180,252,0.22),0_12px_40px_-28px_rgba(0,0,0,0.45)]";
 
 const WORK = [
   {
@@ -72,7 +71,7 @@ export function Projects() {
       aria-labelledby="projects-heading"
     >
       <div className="mx-auto max-w-6xl">
-        <FadeIn>
+        <div className="reveal-scroll">
           <p className="section-eyebrow">Projects</p>
           <h2 id="projects-heading" className="section-title">
             Live sites
@@ -81,13 +80,13 @@ export function Projects() {
             Posters load instantly; optional live embed on demand so the page stays fast
             in lab tests. Open any build in a new tab when you want the full experience.
           </p>
-        </FadeIn>
+        </div>
 
-        <div className="mt-14 grid gap-8 sm:grid-cols-2">
-          {WORK.map((item, i) => (
-            <FadeIn key={item.href} className="h-full" delay={0.05 + i * 0.05}>
+        <div className="project-grid-3d mt-14 grid gap-8 sm:grid-cols-2">
+          {WORK.map((item) => (
+            <div key={item.href} className="reveal-scroll h-full">
               <article
-                className={`${projectCard} flex h-full flex-col outline-none focus-within:ring-2 focus-within:ring-zinc-400 focus-within:ring-offset-2 focus-within:ring-offset-[#070910]`}
+                className={`project-tilt ${projectCard} flex h-full flex-col outline-none focus-within:ring-2 focus-within:ring-zinc-400 focus-within:ring-offset-2 focus-within:ring-offset-[#070910]`}
               >
                 <SitePreview
                   url={item.href}
@@ -116,7 +115,7 @@ export function Projects() {
                   </a>
                 </div>
               </article>
-            </FadeIn>
+            </div>
           ))}
         </div>
       </div>

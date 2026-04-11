@@ -1,7 +1,3 @@
-"use client";
-
-import { FadeIn } from "./fade-in";
-
 const cardBase =
   "group relative overflow-hidden rounded-2xl p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] transition duration-300 md:p-8 surface-card hover:border-zinc-600/55 hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.09),0_0_48px_-20px_rgba(250,250,250,0.08)] backdrop-blur-md";
 
@@ -13,7 +9,7 @@ export function FlexBento() {
       aria-labelledby="flex-heading"
     >
       <div className="mx-auto max-w-6xl">
-        <FadeIn>
+        <div className="reveal-scroll">
           <p className="section-eyebrow">The flex</p>
           <h2 id="flex-heading" className="section-title max-w-[22ch]">
             Speed that holds up in production.
@@ -22,12 +18,11 @@ export function FlexBento() {
             Performance is not a slide deck bullet—it is routing, images, caching, and
             Core Web Vitals under real traffic.
           </p>
-        </FadeIn>
+        </div>
 
         <div className="mt-14 grid gap-4 md:grid-cols-3 md:grid-rows-2 md:auto-rows-min">
-          <FadeIn
-            className={`${cardBase} md:col-span-2 md:row-span-2 flex min-h-[280px] flex-col justify-between`}
-            delay={0.05}
+          <div
+            className={`reveal-scroll ${cardBase} md:col-span-2 md:row-span-2 flex min-h-[280px] flex-col justify-between`}
           >
             <div className="flex items-start justify-between gap-4">
               <span className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-zinc-500 sm:text-xs">
@@ -61,9 +56,9 @@ export function FlexBento() {
                 interaction.
               </p>
             </div>
-          </FadeIn>
+          </div>
 
-          <FadeIn className={cardBase} delay={0.1}>
+          <div className={`reveal-scroll ${cardBase}`}>
             <h3 className="font-sans text-lg font-semibold tracking-tight text-slate-50">
               Mobile-first architecture
             </h3>
@@ -71,9 +66,9 @@ export function FlexBento() {
               Most of your traffic is on a phone. Layouts, images, and scripts are tuned
               for small screens first—no desktop-only shortcuts.
             </p>
-          </FadeIn>
+          </div>
 
-          <FadeIn className={cardBase} delay={0.15}>
+          <div className={`reveal-scroll ${cardBase}`}>
             <h3 className="font-sans text-lg font-semibold tracking-tight text-slate-50">
               Stack
             </h3>
@@ -87,7 +82,7 @@ export function FlexBento() {
                 </li>
               ))}
             </ul>
-          </FadeIn>
+          </div>
         </div>
       </div>
     </section>

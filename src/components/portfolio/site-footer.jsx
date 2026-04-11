@@ -1,7 +1,4 @@
-"use client";
-
 import { BrandMark } from "./brand-mark";
-import { FadeIn } from "./fade-in";
 import { CtaSecondaryExternal } from "./cta";
 
 const FOOTER_LINKS = [
@@ -15,10 +12,10 @@ export function SiteFooter() {
   return (
     <footer
       id="contact"
-      className="scroll-mt-28 border-t border-indigo-500/15 bg-gradient-to-b from-transparent via-indigo-950/5 to-slate-950/30 px-4 py-20 sm:py-24"
+      className="footer-finale scroll-mt-28 border-t border-indigo-400/20 bg-gradient-to-b from-transparent via-indigo-950/12 to-[#03040a] px-4 py-24 sm:py-32"
     >
       <div className="mx-auto max-w-6xl">
-        <FadeIn>
+        <div className="reveal-scroll">
           <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between md:gap-16">
             <div className="min-w-0 max-w-xl">
               <BrandMark variant="footer" />
@@ -54,7 +51,7 @@ export function SiteFooter() {
               </p>
             </div>
           </div>
-        </FadeIn>
+        </div>
       </div>
       <div className="mx-auto mt-16 max-w-6xl border-t border-white/[0.05] pt-10">
         <p className="text-center font-mono text-[11px] text-zinc-600">

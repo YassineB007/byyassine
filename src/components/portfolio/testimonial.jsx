@@ -1,7 +1,3 @@
-"use client";
-
-import { FadeIn } from "./fade-in";
-
 export function Testimonial() {
   return (
     <section
@@ -9,8 +5,8 @@ export function Testimonial() {
       aria-label="Client testimonial"
     >
       <div className="mx-auto max-w-3xl">
-        <FadeIn>
-          <figure className="surface-card relative overflow-hidden p-8 sm:p-11">
+        <div className="reveal-scroll">
+          <figure className="surface-card testimonial-glow relative overflow-hidden p-8 sm:p-11">
             <div
               className="pointer-events-none absolute -right-20 -top-16 h-48 w-48 rounded-full bg-gradient-to-br from-white/[0.07] to-transparent blur-3xl"
               aria-hidden
@@ -40,7 +36,7 @@ export function Testimonial() {
               </div>
             </figcaption>
           </figure>
-        </FadeIn>
+        </div>
       </div>
     </section>
   );
