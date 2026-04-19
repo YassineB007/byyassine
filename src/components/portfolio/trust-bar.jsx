@@ -10,7 +10,7 @@ export function TrustBar() {
   return (
     <section
       id="trust"
-      className="trust-shelf border-y border-indigo-400/20 bg-gradient-to-b from-slate-950/55 via-indigo-950/18 to-slate-950/55 px-4 py-14 sm:py-16"
+      className="cv-section trust-shelf border-y border-indigo-400/20 bg-gradient-to-b from-slate-950/55 via-indigo-950/18 to-slate-950/55 px-4 py-14 sm:py-16"
       aria-label="Trusted by teams in"
     >
       <div className="mx-auto max-w-6xl">

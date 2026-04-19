@@ -26,7 +26,10 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* System stack: no second Google font fetch (mono was Geist_Mono). */
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    monospace;
 }
 
 html {
@@ -190,6 +193,12 @@ main.main-flow h2.section-title::after {
       0 24px 48px -28px rgba(0, 0, 0, 0.5),
       0 0 72px -20px rgba(165, 180, 252, 0.18);
   }
+}
+
+/* Below-fold sections: browser may skip layout of off-screen subtrees (faster first paint). */
+.cv-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 720px;
 }
 
 /* Section wrappers — no scroll-linked animation (view() timelines are costly in lab scroll). */

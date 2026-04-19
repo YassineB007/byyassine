@@ -5,7 +5,7 @@ export function Solutions() {
   return (
     <section
       id="solutions"
-      className="scroll-mt-28 px-4 py-24 sm:py-32"
+      className="cv-section scroll-mt-28 px-4 py-24 sm:py-32"
       aria-labelledby="solutions-heading"
     >
       <div className="mx-auto max-w-6xl">

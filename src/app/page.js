@@ -13,7 +13,7 @@ const Projects = dynamic(() => import("@/components/portfolio/projects").then((m
   loading: () => (
     <section
       id="projects"
-      className="scroll-mt-28 px-4 py-24 sm:py-32"
+      className="cv-section scroll-mt-28 px-4 py-24 sm:py-32"
       aria-busy="true"
       aria-label="Loading projects"
     >

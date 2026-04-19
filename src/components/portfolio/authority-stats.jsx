@@ -6,7 +6,7 @@ const STATS = [
 
 export function AuthorityStats() {
   return (
-    <section className="px-4 py-10 sm:py-12" aria-label="Performance metrics">
+    <section className="cv-section px-4 py-10 sm:py-12" aria-label="Performance metrics">
       <div className="mx-auto max-w-6xl">
         <div className="reveal-scroll">
           <div className="surface-card stats-spotlight relative px-4 py-8 sm:px-10 sm:py-9">

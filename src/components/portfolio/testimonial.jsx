@@ -1,7 +1,7 @@
 export function Testimonial() {
   return (
     <section
-      className="px-4 pb-16 pt-6 sm:pb-20 sm:pt-8"
+      className="cv-section px-4 pb-16 pt-6 sm:pb-20 sm:pt-8"
       aria-label="Client testimonial"
     >
       <div className="mx-auto max-w-3xl">

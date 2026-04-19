@@ -12,7 +12,7 @@ export function SiteFooter() {
   return (
     <footer
       id="contact"
-      className="footer-finale scroll-mt-28 border-t border-indigo-400/20 bg-gradient-to-b from-transparent via-indigo-950/12 to-[#03040a] px-4 py-24 sm:py-32"
+      className="cv-section footer-finale scroll-mt-28 border-t border-indigo-400/20 bg-gradient-to-b from-transparent via-indigo-950/12 to-[#03040a] px-4 py-24 sm:py-32"
     >
       <div className="mx-auto max-w-6xl">
         <div className="reveal-scroll">

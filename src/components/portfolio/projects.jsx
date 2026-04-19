@@ -67,7 +67,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="scroll-mt-28 px-4 py-24 sm:py-32"
+      className="cv-section scroll-mt-28 px-4 py-24 sm:py-32"
       aria-labelledby="projects-heading"
     >
       <div className="mx-auto max-w-6xl">

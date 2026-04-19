@@ -2,6 +2,12 @@
   "name": "byyassine",
   "version": "0.1.0",
   "private": true,
+  "browserslist": [
+    "Chrome >= 120",
+    "Edge >= 120",
+    "Firefox >= 121",
+    "Safari >= 17.2"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
